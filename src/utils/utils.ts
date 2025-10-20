@@ -26,3 +26,10 @@ export function valueToCategory(seedValue: number, round: number) {
   console.log('\n\nItem Is: ' + selectedItem);
   return selectedItem;
 }
+
+// returns the array of categories that corresponds to the givne round
+export function getCategoryFromRound(round: number) {
+  return categories[
+    Object.keys(categories)[round - 1] as keyof typeof categories
+  ];
+}

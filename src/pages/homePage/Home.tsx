@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { seedToValue, valueToCategory } from '../../utils/utils';
-import reactLogo from '../../assets/react.svg';
-import viteLogo from '/vite.svg';
+import {
+  seedToValue,
+  valueToCategory,
+  getCategoryFromRound,
+} from '../../utils/utils';
 import './Home.css';
 
 // NOTES:
@@ -9,9 +11,11 @@ import './Home.css';
 // Round is 1-indexed and max is set to 10 for now.
 
 function App() {
-  const [count, setCount] = useState(0);
   const [seed, setSeed] = useState('');
   const [round, setRound] = useState(0);
+  const [item, setItem] = useState('');
+  const [items, setItems] = useState<string[]>([]);
+  const [role, setRole] = useState('');
 
   function handleGo() {
     if (seed.length === 0) {
@@ -20,12 +24,22 @@ function App() {
     } else if (round <= 0 || isNaN(round) || round > 6) {
       alert('Round must be a positive integer between 1-6.');
       return;
+    } else if (role.length === 0) {
+      alert('You must enter a role.');
+    } else if (
+      role.toLowerCase() != 'beholder' &&
+      role.toLowerCase() != 'transgressor'
+    ) {
+      alert('Not a valid role. Double check your card.');
     } else {
       const seedValue = seedToValue(seed);
-      const category = valueToCategory(seedValue, round);
+      const item = valueToCategory(seedValue, round);
+      const allItems = getCategoryFromRound(round);
 
       console.log('\n\nHERE: ');
-      console.log('category: ', category);
+      console.log('category: ', item);
+      setItem(item);
+      setItems(allItems);
     }
   }
 
@@ -33,43 +47,53 @@ function App() {
     <>
       <div>
         <h1>Halloween Game</h1>
-        <label>Enter seed here:</label>
-        <input
-          type="text"
-          maxLength={16}
-          onChange={(e) => {
-            setSeed(e.target.value);
-          }}
-          required
-        />
+        <p>Enter the details from your card below</p>
+        <div>
+          <label>Seed:</label>
+          <input
+            type="text"
+            maxLength={16}
+            onChange={(e) => {
+              setSeed(e.target.value);
+            }}
+            required
+          />
+        </div>
 
-        <label>Round:</label>
-        <input
-          type="number"
-          max={6}
-          onChange={(e) => {
-            setRound(e.target.valueAsNumber);
-          }}
-          required
-        />
+        <div>
+          <label>Round: (1-6)</label>
+          <input
+            type="number"
+            max={6}
+            onChange={(e) => {
+              setRound(e.target.valueAsNumber);
+            }}
+            required
+          />
+        </div>
+
+        <div>
+          <label>Role: (check your spelling)</label>
+          <input
+            type="text"
+            onChange={(e) => {
+              setRole(e.target.value);
+            }}
+            required
+          />
+        </div>
 
         <button onClick={() => handleGo()}>Go!</button>
 
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <div>
+          {role == 'beholder' ? (
+            <p>{item}</p>
+          ) : role == 'transgressor' ? (
+            items.map((currentItem) => <p>{currentItem}</p>)
+          ) : (
+            <p>Enter a valid role to see the list.</p>
+          )}
+        </div>
       </div>
     </>
   );
