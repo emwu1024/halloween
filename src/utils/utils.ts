@@ -12,14 +12,17 @@ export function seedToValue(seed: string) {
 }
 
 // NOTE: Round is 1-indexed based off of human convention so guests aren't weirded out by 0-indexing.
+// NOTE: Algorithm finds the remainder of the seedValue divided by the length of the given category.
 export function valueToCategory(seedValue: number, round: number) {
   console.log('Categories: ');
   console.log(categories);
   console.log('Round: ' + round);
 
   const category =
-    categories[Object.keys(categories)[round - 1] as keyof object];
+    categories[Object.keys(categories)[round - 1] as keyof typeof categories];
   console.log('Category Selected: ' + category);
 
-  return category;
+  const selectedItem = category[seedValue % category.length];
+  console.log('\n\nItem Is: ' + selectedItem);
+  return selectedItem;
 }
