@@ -1,14 +1,33 @@
-import { useState } from "react";
-import reactLogo from "../../assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./Home.css";
+import { useState } from 'react';
+import { seedToValue, valueToCategory } from '../../utils/utils';
+import reactLogo from '../../assets/react.svg';
+import viteLogo from '/vite.svg';
+import './Home.css';
 
-// NOTES: Seed maxLength set to 16 characters for now
+// NOTES:
+// Seed maxLength set to 16 characters for now.
+// Round is 1-indexed and max is set to 10 for now.
 
 function App() {
   const [count, setCount] = useState(0);
-  const [seed, setSeed] = useState("");
-  const [round, setRound] = useState("");
+  const [seed, setSeed] = useState('');
+  const [round, setRound] = useState(0);
+
+  function handleGo() {
+    if (seed.length === 0) {
+      alert("Seed can't be empty.");
+      return;
+    } else if (round <= 0 || isNaN(round) || round > 6) {
+      alert('Round must be a positive integer between 1-6.');
+      return;
+    } else {
+      const seedValue = seedToValue(seed);
+      const category = valueToCategory(seedValue, round);
+
+      console.log('\n\nHERE: ');
+      console.log('category: ', category);
+    }
+  }
 
   return (
     <>
@@ -21,16 +40,20 @@ function App() {
           onChange={(e) => {
             setSeed(e.target.value);
           }}
+          required
         />
 
-        <label>Round Number:</label>
+        <label>Round:</label>
         <input
-          type="text"
-          maxLength={16}
+          type="number"
+          max={6}
           onChange={(e) => {
-            setRound(e.target.value);
+            setRound(e.target.valueAsNumber);
           }}
+          required
         />
+
+        <button onClick={() => handleGo()}>Go!</button>
 
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
