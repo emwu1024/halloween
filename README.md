@@ -22,3 +22,8 @@ Deployed here: [insert URL once deployed]
 1. cd into the root directory.
 2. run `npm install`
 3. run `npm run dev`
+
+## Credit:
+
+1. Rain and Thunder SFX: MasterAndMargarita from PixaBay - https://pixabay.com/sound-effects/thunder-362031/
+2. Rain and Thunder Adapted Code: https://codepen.io/datCloud/pen/BaKEEqq

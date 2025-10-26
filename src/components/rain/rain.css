@@ -1,0 +1,60 @@
+.rain-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.raindrop {
+  width: 80px;
+  background: linear-gradient(-90deg, rgba(183, 6, 6, 0.9), transparent 40%);
+  border-color: transparent;
+  position: absolute;
+  bottom: 100%;
+  transform-origin: 100% 50%;
+  animation-name: rain;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  height: 3px;
+  border-radius: 20px;
+}
+
+.thunder {
+  position: absolute;
+  inset: 0;
+  animation-name: thunder;
+  animation-duration: var(--thunder-duration, 10s);
+  animation-timing-function: linear;
+  animation-delay: var(--thunder-delay, 5s);
+  animation-iteration-count: infinite;
+}
+
+@keyframes rain {
+  from {
+    transform: rotate(97deg) translateX(0);
+  }
+  to {
+    transform: rotate(97deg) translateX(calc(100vh + 20px));
+  }
+}
+
+@keyframes thunder {
+  0% {
+    background-color: transparent;
+  }
+  1% {
+    background-color: white;
+  }
+  2% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  5% {
+    background-color: white;
+  }
+  6% {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  8% {
+    background-color: transparent;
+  }
+}
