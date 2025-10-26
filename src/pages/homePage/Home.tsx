@@ -6,6 +6,7 @@ import {
 } from "../../utils/utils";
 // import { createRain } from "../../utils/rain";
 import Rain from "../../components/rain/rain";
+import ListBoard from "../../components/list/list";
 import "./Home.css";
 import sound from "../../assets/thunderSFX.mp3";
 
@@ -19,6 +20,7 @@ function App() {
   const [item, setItem] = useState("");
   const [items, setItems] = useState<string[]>([]);
   const [role, setRole] = useState("");
+  const [goClicked, setGoClicked] = useState(false);
 
   // useEffect(() => {
   //   createRain(); // this contains DOM code
@@ -42,6 +44,7 @@ function App() {
       const seedValue = seedToValue(seed);
       const item = valueToCategory(seedValue, round);
       const allItems = getCategoryFromRound(round);
+      setGoClicked(true);
 
       console.log("\n\nHERE: ");
       console.log("category: ", item);
@@ -54,52 +57,61 @@ function App() {
     <>
       <div className="home-container">
         <h1>A Stab In The Dark</h1>
-        <p>Enter the details from your card below</p>
-        <div className="input-container">
-          <label>Seed:</label>
-          <input
-            type="text"
-            maxLength={16}
-            onChange={(e) => {
-              setSeed(e.target.value);
-            }}
-            required
-          />
-        </div>
+        <div className="content-container">
+          <p>Enter the details from your card below</p>
+          <div className="input-container">
+            <label>Seed:</label>
+            <input
+              type="text"
+              maxLength={16}
+              onChange={(e) => {
+                setSeed(e.target.value);
+              }}
+              required
+            />
+          </div>
 
-        <div className="input-container">
-          <label>Round: (1-6)</label>
-          <input
-            type="number"
-            max={6}
-            onChange={(e) => {
-              setRound(e.target.valueAsNumber);
-            }}
-            required
-          />
-        </div>
+          <div className="input-container">
+            <label>Round: (1-6)</label>
+            <input
+              type="number"
+              max={6}
+              onChange={(e) => {
+                setRound(e.target.valueAsNumber);
+              }}
+              required
+            />
+          </div>
 
-        <div className="input-container">
-          <label>Role: (check your spelling)</label>
-          <input
-            type="text"
-            onChange={(e) => {
-              setRole(e.target.value);
-            }}
-            required
-          />
-        </div>
+          <div className="input-container">
+            <label>Role: (check your spelling)</label>
+            <input
+              type="text"
+              onChange={(e) => {
+                setRole(e.target.value);
+              }}
+              required
+            />
+          </div>
 
-        <button onClick={() => handleGo()}>Go!</button>
+          <button onClick={() => handleGo()}>Go!</button>
 
-        <div>
-          {role.toLowerCase() == "bystander" ? (
-            <p>{item}</p>
-          ) : role.toLowerCase() == "murderer" ? (
-            items.map((currentItem) => <p>{currentItem}</p>)
-          ) : (
-            <p>Enter a valid role to see the list.</p>
-          )}
+          <div>
+            {/* {role.toLowerCase() == "bystander" ? (
+              <p>{item}</p>
+            ) : role.toLowerCase() == "murderer" ? (
+              items.map((currentItem) => <p>{currentItem}</p>)
+            ) : (
+              <p>Enter a valid role to see the list.</p>
+            )} */}
+            {role.toLowerCase() == "bystander" ? (
+              <p>{item}</p>
+            ) : role.toLowerCase() == "murderer" && goClicked ? (
+              <ListBoard items={items} />
+            ) : (
+              <p>Enter a valid role to see the list.</p>
+            )}
+          </div>
         </div>
       </div>
 

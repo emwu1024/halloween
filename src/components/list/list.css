@@ -1,0 +1,21 @@
+.list-board-container {
+  border: 3px solid rgba(83, 29, 8, 0.9);
+  border-radius: 15px;
+  background-color: rgba(23, 18, 18, 0.8);
+  margin-bottom: 4rem;
+}
+
+.list-column {
+  display: inline-block;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+  padding-left: 10px;
+  flex-direction: row;
+  /* text-align: left; */
+  margin: 1rem 1rem;
+}
+
+.list-heading {
+  text-decoration: underline;
+  margin-top: 1.25rem;
+}
