@@ -29,6 +29,8 @@
 h1 {
   font-family: var(--font-family-title);
   margin-bottom: 4rem;
+  font-size: 4rem;
+  line-height: 1.1;
 }
 
 .content-container {
