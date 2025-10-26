@@ -6,11 +6,13 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: var(--color-white);
 
   /* Variables */
   --font-family-title: "Metal Mania", system-ui;
   --font-family-body: "Homemade Apple", cursive; /* NOTE: pretty font but hard to read :| */
   --font-family-alt: "Amatic SC", sans-serif;
+  --color-white: rgba(212, 200, 200, 0.87);
   /* font-family: "Homemade Apple", cursive; */
   /* font-family: "Amatic SC", sans-serif; */
   /* font-family: "Grenze Gotisch", serif; */
@@ -80,6 +82,27 @@ button {
   margin-top: 1rem;
   margin-bottom: 2rem;
   border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.4s;
+  border: 1px solid var(--color-white);
+  font-family: inherit;
+  padding: 0.75rem 1.5rem;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button:hover {
+  border-color: rgba(229, 8, 8, 0.762);
+  color: rgba(229, 8, 8, 0.762);
+  transform: scale(1.15);
+  font-weight: bold;
+  /* background-color: ; */
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 hr.thunder {
