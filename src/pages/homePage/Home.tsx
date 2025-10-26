@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   seedToValue,
   valueToCategory,
   getCategoryFromRound,
 } from "../../utils/utils";
-import { createRain } from "../../utils/rain";
+// import { createRain } from "../../utils/rain";
 import Rain from "../../components/rain/rain";
 import "./Home.css";
 import sound from "../../assets/thunderSFX.mp3";
