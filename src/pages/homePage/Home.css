@@ -69,9 +69,10 @@ body {
 
 input {
   border-radius: 20px;
-  padding-left: 0.25rem;
+  padding-left: 0.75rem;
   font-family: var(--font-family-alt);
   font-size: 1.25rem;
+  width: 80%;
 }
 
 button {
