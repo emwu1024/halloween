@@ -15,7 +15,7 @@ function generateDrops(count: number) {
 }
 
 export default function Rain() {
-  const [mobile, setMobile] = useState(() =>
+  const [mobile] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth <= 500 : false
   );
 
