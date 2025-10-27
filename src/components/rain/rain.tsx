@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 import "./rain.css";
 
-const DEFAULT_DROPS = 50;
-const MOBILE_DROPS = 20;
+const DEFAULT_DROPS = 60;
+const MOBILE_DROPS = 30;
 
 function generateDrops(count: number) {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
     isThunder: i === count - 1,
-    left: Math.floor(Math.random() * window.innerWidth),
+    left: Math.floor(Math.random() * (window.innerWidth + 75)) - 50,
     duration: 0.2 + Math.random() * 0.4,
     delay: Math.random() * 5,
   }));
