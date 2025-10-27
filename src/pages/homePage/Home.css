@@ -145,22 +145,6 @@ hr:not(.thunder) {
   }
 }
 
-/* Original */
-/* @keyframes thunder {
-  0% {
-    background-color: transparent;
-  }
-  1% {
-    background-color: white;
-  }
-  2% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  8% {
-    background-color: transparent;
-  }
-} */
-
 @keyframes thunder {
   0% {
     background-color: transparent;
@@ -181,5 +165,12 @@ hr:not(.thunder) {
 
   8% {
     background-color: transparent;
+  }
+}
+
+/* Mobile Responsiveness */
+@media screen and (width <= 500px) {
+  h1 {
+    font-size: 3rem;
   }
 }
