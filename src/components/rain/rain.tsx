@@ -1,12 +1,13 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import "./rain.css";
 
-const NUM_DROPS = 50;
+const DEFAULT_DROPS = 50;
+const MOBILE_DROPS = 20;
 
-function generateDrops() {
-  return Array.from({ length: NUM_DROPS }, (_, i) => ({
+function generateDrops(count: number) {
+  return Array.from({ length: count }, (_, i) => ({
     id: i,
-    isThunder: i === NUM_DROPS - 1,
+    isThunder: i === count - 1,
     left: Math.floor(Math.random() * window.innerWidth),
     duration: 0.2 + Math.random() * 0.4,
     delay: Math.random() * 5,
@@ -14,7 +15,12 @@ function generateDrops() {
 }
 
 export default function Rain() {
-  const drops = useMemo(() => generateDrops(), []);
+  const [mobile, setMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth <= 500 : false
+  );
+
+  const dropCount = mobile ? MOBILE_DROPS : DEFAULT_DROPS;
+  const drops = useMemo(() => generateDrops(dropCount), [dropCount]);
 
   return (
     <div className="rain-container" aria-hidden="true">

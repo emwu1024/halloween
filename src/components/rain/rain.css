@@ -58,3 +58,11 @@
     background-color: transparent;
   }
 }
+
+/* Mobile Responsiveness */
+@media screen and (width <= 500px) {
+  .raindrop {
+    width: 60px;
+    height: 1px;
+  }
+}

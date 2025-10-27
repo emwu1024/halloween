@@ -97,13 +97,6 @@ function App() {
           <button onClick={() => handleGo()}>Go!</button>
 
           <div>
-            {/* {role.toLowerCase() == "bystander" ? (
-              <p>{item}</p>
-            ) : role.toLowerCase() == "murderer" ? (
-              items.map((currentItem) => <p>{currentItem}</p>)
-            ) : (
-              <p>Enter a valid role to see the list.</p>
-            )} */}
             {role.toLowerCase() == "bystander" ? (
               <p>{item}</p>
             ) : role.toLowerCase() == "murderer" && goClicked ? (
