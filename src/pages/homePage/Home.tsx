@@ -108,7 +108,7 @@ function App() {
         </div>
       </div>
 
-      <audio src={sound} controls loop autoPlay />
+      <audio className="audio" src={sound} controls loop autoPlay />
       <Rain />
     </>
   );

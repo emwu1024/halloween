@@ -39,6 +39,10 @@ h1 {
   font-size: 1.25rem;
 }
 
+.audio {
+  margin-top: 4rem;
+}
+
 .input-container {
   margin: 1rem 0;
   display: flex;
