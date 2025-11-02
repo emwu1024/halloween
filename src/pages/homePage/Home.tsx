@@ -65,7 +65,7 @@ function App() {
               type="text"
               maxLength={16}
               onChange={(e) => {
-                setSeed(e.target.value);
+                setSeed(e.target.value.toUpperCase().trim());
               }}
               required
             />
